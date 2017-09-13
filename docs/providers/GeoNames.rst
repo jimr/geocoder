@@ -16,7 +16,7 @@ Geocoding
 .. code-block:: python
 
     >>> import geocoder
-    >>> g = geocoder.geonames('New York', key='<USERNAME>')
+    >>> g = geocoder.geonames('New York', username='<USERNAME>')
     >>> g.address
     "New York City"
     >>> g.geonames_id
@@ -42,7 +42,7 @@ They are all supported
 .. code-block:: python
 
     >>> import geocoder
-    >>> g = geocoder.geonames('New York', key='<USERNAME>', featureClass='A')
+    >>> g = geocoder.geonames('New York', username='<USERNAME>', featureClass='A')
     >>> g.address
     "New York"
     >>> g.geonames_id
@@ -67,7 +67,7 @@ This is also supported by Geocoder, which will expect an array instead of the no
 
 .. code-block:: python
 
-    >>> g = geocoder.geonames('Paris', maxRows=5, country=['FR', 'US'], key='<USERNAME>')
+    >>> g = geocoder.geonames('Paris', maxRows=5, country=['FR', 'US'], username='<USERNAME>')
     >>> print([(r.address, r.country) for r in g])
     [('Paris', 'France'), ('Paris', 'United States'), ('Paris', 'France'), ('Paris', 'United States'), ('Paris', 'United States')]
 
@@ -79,7 +79,7 @@ As mentioned above, Geomanes allows the extra parameters 'east', 'west', 'north'
 
 .. code-block:: python
 
-    >>> g = geocoder.geonames('Paris', key='<USERNAME>', east=-96.0, west=-95.0, north=33.5, south=33.0)
+    >>> g = geocoder.geonames('Paris', username='<USERNAME>', east=-96.0, west=-95.0, north=33.5, south=33.0)
     >>> g.address
     'Kosciusko'
     >>> g.country
@@ -97,7 +97,7 @@ This method requires a valid *geonames_id*, which you can get with the geocode m
 
 .. code-block:: python
 
-    g = geocoder.geonames(6094817, method='details', key='<USERNAME>')
+    g = geocoder.geonames(6094817, method='details', username='<USERNAME>')
 
     >>> g.lat
     "45.41117"
@@ -162,11 +162,11 @@ These two web services expect a *geonames_id*, which means you first need to mak
 .. code-block:: python
 
     >>> import geocoder
-    >>> g = geocoder.geonames('New York', key='<USERNAME>', method='children')
-    >>> c = geocoder.geonames(g.geoname_id, key='<USERNAME>', method='children')
+    >>> g = geocoder.geonames('New York', username='<USERNAME>', method='children')
+    >>> c = geocoder.geonames(g.geoname_id, username='<USERNAME>', method='children')
     >>> c.geojson
     ...
-    >>> h = geocoder.geonames(g.geoname_id, key='<USERNAME>', method='hierarchy')
+    >>> h = geocoder.geonames(g.geoname_id, username='<USERNAME>', method='hierarchy')
     >>> h.geojson
     ...
 
@@ -181,7 +181,7 @@ Command Line Interface
 Environment Variables
 ---------------------
 
-To make sure your API key is store safely on your computer, you can define that API key using your system's environment variables.
+To make sure your API username is stored safely on your computer, you can define that API username using your system's environment variables.
 
 .. code-block:: bash
 
@@ -192,7 +192,7 @@ Parameters
 
 - `location`: Your search location you want **geocoded**.
 - `geonameid`: The place you want **details** / **children** / **hierarchy** for.
-- `key`: (required) geonames *username* needs to be passed with each request.
+- `username`: (required) geonames *username* needs to be passed with each request.
 - `maxRows`: (default=1) Max number of results to fetch
 - `proximity`: Search within given area (bbox, bounds, or around latlng)
 - `method`: (default=geocode) Use the following:
